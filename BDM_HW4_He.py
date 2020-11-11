@@ -2,7 +2,6 @@
 from pyspark import SparkContext
 import sys, csv
 
-
 def mapper(idx, data):
     if idx == 0:
         next(data)
@@ -32,7 +31,7 @@ def reducer(data):
 if __name__ == '__main__':
     sc = SparkContext()
     file = sys.argv[1]
-    rdd = sc.textFile(file, use_unicode=True)
+    rdd = sc.textFile(file, use_unicode=False)
     res = rdd.mapPartitionsWithIndex(mapper) \
         .reduceByKey(lambda x, y: x + y) \
         .map(lambda x: (x[0][:2], x[1])) \
