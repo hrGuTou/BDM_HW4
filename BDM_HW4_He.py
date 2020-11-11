@@ -6,7 +6,7 @@ import sys, csv
 def mapper(idx, data):
     if idx == 0:
         next(data)
-    reader = csv.reader(data)
+    reader = csv.reader(data, delimiter=",")
     counts = {}
 
     for row in reader:
