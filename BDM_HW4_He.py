@@ -32,7 +32,7 @@ def reducer(data):
 if __name__ == '__main__':
     sc = SparkContext()
     file = sys.argv[1]
-    rdd = sc.textFile(file)
+    rdd = sc.textFile(file, use_unicode=True)
     res = rdd.mapPartitionsWithIndex(mapper) \
         .reduceByKey(lambda x, y: x + y) \
         .map(lambda x: (x[0][:2], x[1])) \
